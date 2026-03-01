@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3D Bouquet Designer Elite</title>
+    <style>
+        :root { --primary: #8EB69B; --secondary: #E29595; --bg: #F8FBF9; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .container { display: flex; max-width: 1200px; width: 100%; gap: 20px; }
+        
+        /* Sidebar */
+        .sidebar { width: 320px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid #D1E2D8; display: flex; flex-direction: column; gap: 15px; }
+        .section-title { font-size: 0.8rem; font-weight: bold; color: var(--primary); text-transform: uppercase; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-top: 10px; }
+        
+        /* Buttons & Grid */
+        .flower-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+        .flower-btn { font-size: 1.5rem; padding: 8px; border-radius: 10px; border: 1px solid #E8F3ED; background: #F9FBF9; cursor: pointer; }
+        .controls-box { background: #F9F9F9; padding: 15px; border-radius: 12px; border: 1px solid #EEE; text-align: left; }
+        .controls-box label { font-size: 0.7rem; font-weight: bold; display: block; margin-top: 10px; color: #666; }
+        select, input[type=range], input[type=color] { width: 100%; margin-top: 5px; cursor: pointer; }
+
+        /* Canvas */
+        .canvas { flex-grow: 1; height: 750px; background-color: white; border-radius: 25px; position: relative; overflow: hidden; border: 2px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.05); background-size: cover; background-position: center; background-repeat: no-repeat; }
+        
+        /* Vase */
+        .vase-container { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); width: 200px; z-index: 5; cursor: pointer; transition: width 0.2s; }
+        #vasePath { stroke: var(--primary); stroke-width: 2; transition: d 0.5s ease, fill 0.3s; }
+
+        .flower-instance { position: absolute; cursor: grab; user-select: none; filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.2)); transition: transform 0.2s; }
+        .selected { outline: 3px dashed var(--primary); outline-offset: 10px; border-radius: 50%; }
+
+        .btn-group { display: flex; gap: 5px; margin-top: 10px; }
+        .main-btn { flex: 1; padding: 12px; border-radius: 10px; border: none; color: white; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <h1 style="margin-bottom:10px;">3D Bouquet Designer Elite</h1>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="section-title">1. Background</div>
+            <!-- The ID must match the JavaScript: id="bgInput" -->
+            <input type="file" id="bgInput" accept="image/*" onchange="uploadBG(event)">
+            <button onclick="resetBG()" style="padding: 5px; cursor:pointer; margin-top:5px; border-radius:5px; border:1px solid #ddd;">Reset to White</button>
+
+            <div class="section-title">2. Vase Design</div>
+            <label>Shape</label>
+            <select onchange="changeVase(this.value)">
+                <option value="M25,20 Q50,10 75,20 L85,100 Q50,115 15,100 Z">Classic</option>
+                <option value="M35,10 L65,10 L65,110 L35,110 Z">Cylinder</option>
+                <option value="M50,20 C10,20 10,110 50,110 C90,110 90,20 50,20 Z">Bowl</option>
+                <option value="M20,10 Q50,25 80,10 L65,110 L35,110 Z">Trumpet</option>
+            </select>
+
+            <label>Color / Texture</label>
+            <select onchange="changeVaseColor(this.value)">
+                <option value="rgba(142, 182, 155, 0.3)">Glass (Default)</option>
+                <option value="#ffd700">Gold</option>
+                <option value="#ffffff">Ceramic White</option>
+                <option value="#B19CD9">Purple Glass</option>
+            </select>
+
+            <div class="section-title">3. Flowers</div>
+            <div class="flower-grid">
+                <button class="flower-btn" onclick="addFlower('🌹')">🌹</button>
+                <button class="flower-btn" onclick="addFlower('🌻')">🌻</button>
+                <button class="flower-btn" onclick="addFlower('🌷')">🌷</button>
+                <button class="flower-btn" onclick="addFlower('🌾')">🌾</button>
+                <button class="flower-btn" onclick="addFlower('🌿')">🌿</button>
+                <button class="flower-btn" onclick="addFlower('🍃')">🍃</button>
+                <button class="flower-btn" onclick="addFlower('🌸')">🌸</button>
+                <button class="flower-btn" onclick="addFlower('🍇')">🍇</button>
+            </div>
+
+            <div class="controls-box">
+                <strong id="targetLabel" style="font-size: 0.8rem;">Editing: None</strong>
+                <div class="btn-group">
+                    <button onclick="moveLayer(1)">Forward</button>
+                    <button onclick="moveLayer(-1)">Backward</button>
+                    <button onclick="flipItem()">Flip ↔️</button>
+                </div>
+                <label>Size</label>
+                <input type="range" id="sizeSlider" min="30" max="450" value="100" oninput="updateSize(this.value)">
+                <label>Rotation</label>
+                <input type="range" id="rotateSlider" min="0" max="360" value="0" oninput="updateRotation(this.value)">
+            </div>
+
+            <div class="btn-group">
+                <button class="main-btn" style="background:var(--primary)" onclick="window.print()">Export ✨</button>
+                <button class="main-btn" style="background:var(--secondary)" onclick="clearAll()">Clear</button>
+            </div>
+        </div>
+
+        <!-- The ID must match the JavaScript: id="canvas" -->
+        <div id="canvas" class="canvas">
+            <div id="theVase" class="vase-container" onclick="selectItem(event, this, 'Vase')">
+                <svg viewBox="0 0 100 120" style="width:100%">
+                    <path id="vasePath" d="M25,20 Q50,10 75,20 L85,100 Q50,115 15,100 Z" fill="rgba(142, 182, 155, 0.3)" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let selectedItem = null;
+        let zCounter = 10;
+
+        // FIXED: BACKGROUND LOGIC
+        function uploadBG(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const canvas = document.getElementById('canvas');
+                canvas.style.backgroundImage = `url('${e.target.result}')`;
+                canvas.style.backgroundColor = "transparent"; // Hide the white base
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetBG() { 
+            const canvas = document.getElementById('canvas');
+            canvas.style.backgroundImage = 'none'; 
+            canvas.style.backgroundColor = 'white';
+            // Clear the file input so you can upload the same image again if needed
+            document.getElementById('bgInput').value = ""; 
+        }
+
+        // VASE & STYLING
+        function changeVase(d) { document.getElementById('vasePath').setAttribute('d', d); }
+        function changeVaseColor(c) { document.getElementById('vasePath').setAttribute('fill', c); }
+
+        function selectItem(e, el, name) {
+            e.stopPropagation();
+            if (selectedItem) selectedItem.classList.remove('selected');
+            selectedItem = el;
+            selectedItem.classList.add('selected');
+            document.getElementById('targetLabel').innerText = "Editing: " + name;
+
+            if (name === 'Vase') {
+                document.getElementById('sizeSlider').value = parseInt(el.style.width) || 200;
+            } else {
+                document.getElementById('sizeSlider').value = parseInt(el.style.fontSize) || 100;
+            }
+        }
+
+        document.getElementById('canvas').onclick = (e) => {
+            if (e.target.id === 'canvas' && selectedItem) {
+                selectedItem.classList.remove('selected');
+                selectedItem = null;
+                document.getElementById('targetLabel').innerText = "Editing: None";
+            }
+        };
+
+        function updateSize(val) {
+            if (!selectedItem) return;
+            if (selectedItem.id === 'theVase') {
+                selectedItem.style.width = val + 'px';
+            } else {
+                selectedItem.style.fontSize = val + 'px';
+            }
+        }
+
+        function addFlower(emoji) {
+            const f = document.createElement('div');
+            f.className = 'flower-instance';
+            f.innerHTML = emoji;
+            f.style.fontSize = '100px';
+            f.style.left = '40%'; f.style.top = '30%';
+            f.style.zIndex = zCounter++;
+            f.dataset.rotation = 0; f.dataset.flip = 1;
+
+            f.onmousedown = function(e) {
+                selectItem(e, f, 'Flower');
+                let sx = e.clientX - f.getBoundingClientRect().left;
+                let sy = e.clientY - f.getBoundingClientRect().top;
+                document.onmousemove = (m) => {
+                    let r = document.getElementById('canvas').getBoundingClientRect();
+                    f.style.left = (m.pageX - r.left - sx) + 'px';
+                    f.style.top = (m.pageY - r.top - sy) + 'px';
+                };
+                document.onmouseup = () => document.onmousemove = null;
+            };
+            document.getElementById('canvas').appendChild(f);
+        }
+
+        function updateRotation(v) {
+            if (!selectedItem) return;
+            selectedItem.dataset.rotation = v;
+            const flip = selectedItem.dataset.flip || 1;
+            const base = selectedItem.id === 'theVase' ? 'translateX(-50%) ' : '';
+            selectedItem.style.transform = `${base}rotate(${v}deg) scaleX(${flip})`;
+        }
+
+        function flipItem() {
+            if (!selectedItem) return;
+            selectedItem.dataset.flip = (selectedItem.dataset.flip == 1) ? -1 : 1;
+            updateRotation(selectedItem.dataset.rotation || 0);
+        }
+
+        function moveLayer(d) { if (selectedItem) selectedItem.style.zIndex = (parseInt(selectedItem.style.zIndex) || 10) + d; }
+        function clearAll() { document.querySelectorAll('.flower-instance').forEach(el => el.remove()); }
+    </script>
+    <script src="floralbuilder.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+    <main class="ai-container">
+    <header class="ai-header">
+        <h2>Second Brain</h2>
+        <p>Ask me to summarize, research, or guide your wellness journey.</p>
+    </header>
+<link rel="stylesheet" href="ai.css">
+    <!-- This is where the AI "thinks" and talks -->
+    <div id="aiResponseArea" class="ai-chat-window">
+        <div class="bot-msg">Hello! I'm your Second Brain. What are we exploring today?</div>
+    </div>
+
+    <!-- The Input Field -->
+    <div class="ai-input-wrapper">
+        <textarea id="aiPrompt" placeholder="Paste a long article or ask a health question..."></textarea>
+        <button id="askBtn" onclick="queryAI()">Consult Brain ✨</button>
+    </div>
+    <script src="ai.js"></script>
+</main>

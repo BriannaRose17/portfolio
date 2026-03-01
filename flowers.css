@@ -1,0 +1,186 @@
+/* --- 1. GLOBAL LAYOUT --- */
+:root {
+    --primary: #8EB69B; /* Sage Green */
+    --secondary: #E29595; /* Rose Pink */
+    --bg: #F8FBF9;
+    --white: #ffffff;
+    --sidebar-w: 320px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body { 
+    font-family: 'Segoe UI', sans-serif; 
+    background: var(--bg); 
+    color: #2D3A30; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px; 
+}
+
+.container { 
+    display: flex; 
+    max-width: 1300px; 
+    width: 100%; 
+    gap: 20px; 
+}
+
+/* --- 2. SIDEBAR STYLING --- */
+.sidebar { 
+    width: var(--sidebar-w); 
+    background: var(--white); 
+    padding: 20px; 
+    border-radius: 20px; 
+    box-shadow: 0 8px 30px rgba(0,0,0,0.05); 
+    border: 1px solid #D1E2D8; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 15px; 
+    height: fit-content; 
+}
+
+.section-title { 
+    font-size: 0.75rem; 
+    font-weight: bold; 
+    color: var(--primary); 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+    border-bottom: 1px solid #eee; 
+    padding-bottom: 5px; 
+}
+
+/* Flower Selection Grid */
+.flower-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 8px; 
+}
+
+.flower-btn { 
+    font-size: 1.4rem; 
+    padding: 8px; 
+    border-radius: 12px; 
+    border: 1px solid #E8F3ED; 
+    background: #F9FBF9; 
+    cursor: pointer; 
+    transition: all 0.2s; 
+}
+
+.flower-btn:hover { 
+    background: #E8F3ED; 
+    transform: translateY(-2px); 
+}
+
+/* Controls & Sliders */
+.controls-box { 
+    background: #F9F9F9; 
+    padding: 15px; 
+    border-radius: 12px; 
+    border: 1px solid #EEE; 
+    text-align: left; 
+}
+
+.controls-box label { 
+    font-size: 0.7rem; 
+    font-weight: bold; 
+    display: block; 
+    margin-top: 10px; 
+    color: #666; 
+}
+
+input[type=range], input[type=color], select { 
+    width: 100%; 
+    accent-color: var(--primary); 
+    cursor: pointer; 
+    margin-top: 5px; 
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+/* Layering & Action Buttons */
+.btn-group { display: flex; gap: 5px; margin-top: 10px; }
+
+.util-btn { 
+    flex: 1; 
+    padding: 8px; 
+    font-size: 0.65rem; 
+    font-weight: bold; 
+    border-radius: 6px; 
+    border: 1px solid #DDD; 
+    cursor: pointer; 
+    background: var(--white); 
+}
+
+.main-btn { 
+    flex: 1; 
+    padding: 14px; 
+    border-radius: 12px; 
+    border: none; 
+    color: white; 
+    font-weight: bold; 
+    cursor: pointer; 
+    font-size: 0.9rem; 
+}
+
+.save { background: var(--primary); }
+.clear { background: var(--secondary); }
+
+/* --- 3. CANVAS & VASE --- */
+.canvas { 
+    flex-grow: 1; 
+    height: 800px; 
+    background: var(--white); 
+    border-radius: 25px; 
+    position: relative; 
+    overflow: hidden; 
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03); 
+    background-size: cover; 
+    background-position: center; 
+}
+
+/* High-Visibility Vase */
+.vase-container { 
+    position: absolute; 
+    bottom: 40px; 
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 200px; 
+    z-index: 5; /* Middle layer */
+    cursor: pointer; 
+}
+
+.vase-svg { 
+    width: 100%; 
+    height: auto; 
+    fill: rgba(142, 182, 155, 0.2); 
+    stroke: var(--primary); 
+    stroke-width: 2.5; 
+    stroke-dasharray: 4; 
+}
+
+/* Flower Instances */
+.flower-instance { 
+    position: absolute; 
+    cursor: grab; 
+    user-select: none; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.2)); 
+    transition: filter 0.3s, transform 0.2s ease-out; 
+}
+
+.selected { 
+    outline: 3px dashed var(--primary); 
+    outline-offset: 10px; 
+    border-radius: 50%; 
+    background: rgba(142, 182, 155, 0.05);
+}
+
+/* --- 4. EXPORT PREPARATION --- */
+@media print { 
+    .sidebar, h1, p { display: none; } 
+    .canvas { border: none; box-shadow: none; width: 100vw; height: 100vh; } 
+}

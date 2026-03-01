@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="focusapp.css">
+      <!-- Use a real link to your portfolio page -->
+    <a href="Project.html" class="back-btn">← Back to Projects</a>
+    
+    <h1 class="app-title">Wellness Haven</h1>
+    <p class="app-subtitle">Your personal space for focus and growth</p>
+</head>
+<body>
+
+    <main class="main-dashboard">
+        <!-- 1. NAVIGATION GRID -->
+        <nav class="tab-grid">
+            <button class="square-btn" onclick="openTab(event, 'timer')">Focus Timer</button>
+            <button class="square-btn" onclick="openTab(event, 'logs')">Session Logs</button>
+            <button class="square-btn" onclick="openTab(event, 'tasks')">Wellness Tasks</button>
+            <button class="square-btn" onclick="openTab(event, 'mood')">Mood Tracker</button>
+            <button class="square-btn" onclick="openTab(event, 'habit')">Habit Tracker</button>
+            <button class="square-btn" onclick="openTab(event, 'hydration')">Hydration</button>
+        </nav>
+
+        <!-- 2. DAILY AFFIRMATION -->
+        <div class="affirmation-container">
+            <p id="affirmationText">"Loading your daily inspiration..."</p>
+        </div>
+
+        <!-- 3. MODAL OVERLAY -->
+        <div id="modalOverlay" class="modal-overlay">
+            
+            <!-- FOCUS TIMER -->
+            <section id="timer" class="tab-content">
+                <div class="modal-header">
+                    <h2>Focus Timer</h2>
+                    <button class="close-x" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <input type="number" id="userMinutes" placeholder="Set minutes (e.g. 25)">
+                    <h1 id="timerDisplay">25:00</h1>
+                    <div class="progress-container"><div id="progressBar"></div></div>
+                    <div class="button-group-vertical">
+                        <button onclick="startTimer()" class="complete-btn">Start Session</button>
+                        <button onclick="pauseTimer()" class="pause-btn">Pause</button>
+                        <button onclick="resetTimer()" class="delete-btn">Reset</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SESSION HISTORY -->
+            <section id="logs" class="tab-content">
+                <div class="modal-header">
+                    <h2>Session History</h2>
+                    <button class="close-x" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p id="totalCount">Total Focused: 0 mins</p>
+                    <ul id="sessionList" class="hierarchy-list"></ul>
+                    <button class="delete-btn" onclick="clearLogs()">Clear All History</button>
+                </div>
+            </section>
+
+            <!-- WELLNESS TASKS (Fixed Duplicates) -->
+            <section id="tasks" class="tab-content">
+                <div class="modal-header">
+                    <h2>Daily Tasks</h2>
+                    <button class="close-x" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" id="taskInput" placeholder="New task...">
+                        <button onclick="addWellnessTask()" class="complete-btn">Add</button>
+                    </div>
+                    <div class="progress-container"><div id="taskBar" style="width: 0%;"></div></div>
+                    <ul id="wellnessList" class="hierarchy-list"></ul>
+                </div>
+            </section>
+
+            <!-- MOOD TRACKER -->
+            <section id="mood" class="tab-content">
+                <div class="modal-header">
+                    <h2>How are you feeling?</h2>
+                    <button class="close-x" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="button-group">
+                        <button class="square-btn" onclick="logMood('😊')">😊</button>
+                        <button class="square-btn" onclick="logMood('😐')">😐</button>
+                        <button class="square-btn" onclick="logMood('😔')">😔</button>
+                    </div>
+                    <p id="currentMood" style="margin-top: 15px;">Latest Mood: None</p>
+                </div>
+            </section>
+
+            <!-- HABIT TRACKER (Fixed Duplicates) -->
+            <section id="habit" class="tab-content">
+                <div class="modal-header">
+                    <h2>Habit Tracker</h2>
+                    <button class="close-x" onclick="closeModal()">✕</button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input type="text" id="habitInput" placeholder="New habit...">
+                        <button onclick="addNewHabit()" class="complete-btn">Add</button>
+                    </div>
+                    <ul id="habitList" class="hierarchy-list"></ul>
+                </div>
+            </section>
+<!-- HYDRATION SECTION -->
+<section id="hydration" class="tab-content">
+    <div class="modal-header">
+        <h2>Hydration</h2>
+        <button class="close-x" onclick="closeModal()">✕</button>
+    </div>
+    
+    <!-- Only keep this ONE modal-body -->
+    <div class="modal-body">
+        <p id="waterCount">0 / 8 glasses</p>
+        <div class="progress-container">
+            <div id="waterBar" style="background:#8bb7d6; width: 0%;"></div>
+        </div>
+        
+        <div class="button-group">
+            <button onclick="addWater()" class="complete-btn">+ Add</button>
+            <button onclick="removeWater()" class="delete-btn" style="background-color: #fdf2f2;">- Remove</button>
+            <button onclick="resetWater()" class="delete-btn">Clear All</button>
+        </div>
+    </div>
+</section>
+
+            </section>
+
+        </div>
+    </main>
+
+    <script src="Focusapp.js"></script>
+</body>
+
+</html>
+
+
+

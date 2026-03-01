@@ -1,0 +1,129 @@
+Task.css
+* { margin: 0; padding: 0; box-sizing: border-box; } 
+
+Body { 
+  font-family: "Inter", sans-serif; 
+  background-color: #FFF8F5; 
+  color: #333; 
+  line-height: 1.6;
+  
+  /* Centering Logic */
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header */ 
+Header { 
+  text-align: center; 
+  padding: 100px 20px 40px 20px; 
+  background-color: transparent; 
+  color: #c05b5b;
+} 
+
+Header h1 { font-size: 48px; color: #c05b5b; } 
+Header p { font-size: 20px; margin-top: 10px; font-weight: 500; } 
+
+/* Back Button */
+.back-btn {
+  align-self: flex-start; 
+  background-color: transparent !important;
+  color: #6e3131 !important;
+  font-weight: bold;
+  border: 2px solid #ff7c7c;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-bottom: 20px;
+}
+
+/* Progress Bar*/
+.progress-container {
+  width: 100%;          
+  max-width: 800px;    
+  background-color: #ff9c9c;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+#progressBar {
+  width: 0%; 
+  height: 35px;        
+  background-color: #e0c0c0; 
+  text-align: center;
+  line-height: 35px;
+  font-weight: bold;
+  transition: width 0.4s ease; 
+}
+
+/* Tasks List */
+.hierarchy-list {
+  list-style: none;
+  padding: 0;
+  width: 80%;          
+  max-width: 600px;    
+}
+
+.task-item {
+  background: rgb(252, 239, 239);
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 10px solid #ccc; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Priority Colors */
+.priority-high { border-left-color: #C97171; }
+.priority-medium { border-left-color: #F2C1C1; }
+.priority-low { border-left-color: #E9D5D0; }
+
+/* Buttons & Links */
+.button-group { display: flex; gap: 8px; }
+
+.complete-btn, .delete-btn {
+  background-color: #eeeeee;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.complete-btn:hover { background-color: #82b1b1; color: white; }
+
+/* Roses */
+body::before, body::after {
+  content: "";
+  position: fixed;     
+  width: 250px;        
+  height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;          
+  pointer-events: none; 
+  opacity: 0.9;         
+}
+
+body::before { top: 0; left: 0; background-image: url('roses_left.png'); }
+body::after { bottom: 0; right: 0; background-image: url('roses_right.png'); }
+
+/* Completion State */
+.completed { opacity: 0.6; background-color: #ffffff; }
+.completed .task-text { text-decoration: line-through; }
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  body::before, body::after { display: none; }
+  .progress-container, .hierarchy-list { width: 95%; }
+}
+
+

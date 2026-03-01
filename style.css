@@ -1,0 +1,156 @@
+/* Reset & Body */ 
+
+* { margin:0; padding:0; box-sizing:border-box; } 
+
+Body { font-family:"Inter", sans-serif; background-color:#FFF8F5; color:#333; line-height:1.6; } 
+
+ 
+
+/* Header */ 
+
+Header { text-align:center; padding:100px 20px; background-color:#FFF8F5; } 
+
+Header h1 { font-size:48px; color:#c05b5b; } 
+
+Header p { font-size:20px; margin-top:10px; font-weight:500; } 
+
+Header a { display:inline-block; margin-top:20px; text-decoration:none; color:white; background-color:#F2C1C1; padding:10px 20px; border-radius:8px; transition: background-color 0.3s; } 
+
+Header a:hover { background-color:#E9D5D0; } 
+
+ 
+
+/* Sections */ 
+
+Section { padding:60px 20px; max-width:900px; margin:auto; } 
+
+H2 { font-size:32px; margin-bottom:20px; color:#C97171; } 
+
+ 
+
+/* Project Card */ 
+
+.project-card { background-color:#FFF1F0; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow:0 4px 8px rgba(0,0,0,0.05); } 
+
+.project-card a { display:inline-block; margin-top:10px; color:white; background-color:#C97171; padding:8px 16px; border-radius:6px; text-decoration:none; } 
+
+.project-card a:hover { background-color:#F2C1C1; } 
+
+/*Projects Page Header */
+.project-header {
+  padding-top: 170px;    
+  padding-bottom: 40px;
+}
+
+/* Project roses*/
+.project-header::before {
+  height: 400px;        
+  max-width: 700px;
+  opacity: 0.7;          
+}
+
+/* Style for the Back Button */
+.back-btn {
+  background-color: transparent !important;
+  color: #c05b5b !important;
+  font-weight: bold;
+  border: 2px solid #F2C1C1;
+  margin-top: 10px;
+}
+
+.back-btn:hover {
+  background-color: #F2C1C1 !important;
+  color: white !important;
+}
+
+/* Skills & Certifications & Education */ 
+
+.skills-list, .cert-list, #education ul { list-style-type: disc; margin-left: 20px; color:#333; } 
+
+.skills-list li, .cert-list li, #education ul li { margin-bottom: 8px; } 
+
+ 
+
+/* Resume Section */ 
+
+#resume a { display:inline-block; padding:8px 16px; background-color:#C97171; color:white; border-radius:6px; text-decoration:none; transition:0.3s; } 
+
+#resume a:hover { background-color:#F2C1C1; } 
+
+ 
+
+/* Links */ 
+
+A { color:#C97171; text-decoration:none; } 
+
+A:hover { text-decoration:underline; } 
+
+/* Floral Corner Decorations */
+body::before, body::after {
+  content: "";
+  position: fixed;     
+  width: 250px;        
+  height: 250px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;          
+  pointer-events: none; 
+  opacity: 0.9;         
+}
+
+/* Top-Left Corner Rose */
+body::before {
+  top: 0;
+  left: 0;
+  background-image: url('roses_left.png'); 
+}
+
+/* Bottom-Right Corner Rose */
+body::after {
+  bottom: 0;
+  right: 0;
+  background-image: url('roses_right.png'); 
+}
+
+/* UX Best Practice:*/
+@media (max-width: 768px) {
+  body::before, body::after {
+    display: none;
+  }
+}
+/* Rose Header Border */
+header {
+  position: relative;
+  padding-top: 250px; 
+  padding-bottom: 100px;
+  text-align: center;
+  overflow: hidden; 
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0;             
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 900px;       
+  height: 1500px;    
+  
+  background-image: url('border.png');
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: top center;
+  
+ 
+  z-index: 0; 
+  pointer-events: none;
+}
+
+header h1, header p, header a {
+  position: relative; 
+  z-index: 1;        
+}
+
+
+
