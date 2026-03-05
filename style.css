@@ -147,13 +147,11 @@ header::before {
   pointer-events: none;
 }
 
-
-}
-
 header h1, header p, header a {
   position: relative; 
   z-index: 1;        
 }
+
 
 
 
