@@ -56,13 +56,14 @@ textarea {
 .back-btn {
   align-self: flex-start; 
   background-color: transparent !important;
-  color: #D1E2D8 !important;
+  color: #8A9A5B !important;
   font-weight: bold;
   padding: 10px 20px;
   text-decoration: none;
   transition: 0.3s;
   margin-bottom: 20px;
 }
+
 
 
 
