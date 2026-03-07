@@ -53,4 +53,16 @@ textarea {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+.back-btn {
+  align-self: flex-start; 
+  background-color: transparent !important;
+  color: #6e3131 !important;
+  font-weight: bold;
+  border: 2px solid #ff7c7c;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-bottom: 20px;
+}
 
