@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 
 console.log("Script loaded successfully!");
 
@@ -28,7 +28,7 @@ function addTask() {
         return;
     }
 
-    // Create Item
+
     const li = document.createElement('li');
     li.className = `task-item priority-${priority}`;
     
@@ -40,7 +40,7 @@ function addTask() {
     `;
 
     list.appendChild(li);
-    input.value = ""; // Clear input
+    input.value = ""; 
     updateProgress();
 }
 
@@ -48,4 +48,5 @@ function toggleComplete(element) {
     element.parentElement.classList.toggle('completed');
     updateProgress();
 }
+
 
