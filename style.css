@@ -1,12 +1,8 @@
-/* Reset & Body */ 
-
 * { margin:0; padding:0; box-sizing:border-box; } 
 
 Body { font-family:"Inter", sans-serif; background-color:#FFF8F5; color:#333; line-height:1.6; } 
 
  
-
-/* Header */ 
 
 Header { text-align:center; padding:100px 20px; background-color:#FFF8F5; } 
 
@@ -20,15 +16,11 @@ Header a:hover { background-color:#E9D5D0; }
 
  
 
-/* Sections */ 
-
 Section { padding:60px 20px; max-width:900px; margin:auto; } 
 
 H2 { font-size:32px; margin-bottom:20px; color:#C97171; } 
 
  
-
-/* Project Card */ 
 
 .project-card { background-color:#FFF1F0; padding:20px; border-radius:10px; margin-bottom:20px; box-shadow:0 4px 8px rgba(0,0,0,0.05); } 
 
@@ -36,20 +28,20 @@ H2 { font-size:32px; margin-bottom:20px; color:#C97171; }
 
 .project-card a:hover { background-color:#F2C1C1; } 
 
-/*Projects Page Header */
+
 .project-header {
   padding-top: 170px;    
   padding-bottom: 40px;
 }
 
-/* Project roses*/
+
 .project-header::before {
   height: 400px;        
   max-width: 700px;
   opacity: 0.7;          
 }
 
-/* Style for the Back Button */
+
 .back-btn {
   background-color: transparent !important;
   color: #c05b5b !important;
@@ -63,7 +55,7 @@ H2 { font-size:32px; margin-bottom:20px; color:#C97171; }
   color: white !important;
 }
 
-/* Skills & Certifications & Education */ 
+
 
 .skills-list, .cert-list, #education ul { list-style-type: disc; margin-left: 20px; color:#333; } 
 
@@ -71,7 +63,6 @@ H2 { font-size:32px; margin-bottom:20px; color:#C97171; }
 
  
 
-/* Resume Section */ 
 
 #resume a { display:inline-block; padding:8px 16px; background-color:#C97171; color:white; border-radius:6px; text-decoration:none; transition:0.3s; } 
 
@@ -79,13 +70,12 @@ H2 { font-size:32px; margin-bottom:20px; color:#C97171; }
 
  
 
-/* Links */ 
 
 A { color:#C97171; text-decoration:none; } 
 
 A:hover { text-decoration:underline; } 
 
-/* Floral Corner Decorations */
+
 body::before, body::after {
   content: "";
   position: fixed;     
@@ -98,27 +88,27 @@ body::before, body::after {
   opacity: 0.9;         
 }
 
-/* Top-Left Corner Rose */
+
 body::before {
   top: 0;
   left: 0;
   background-image: url('roses_left.png'); 
 }
 
-/* Bottom-Right Corner Rose */
+
 body::after {
   bottom: 0;
   right: 0;
   background-image: url('roses_right.png'); 
 }
 
-/* UX Best Practice:*/
+
 @media (max-width: 768px) {
   body::before, body::after {
     display: none;
   }
 }
-/* Rose Header Border */
+
 header {
   position: relative;
   padding-top: 250px; 
@@ -151,6 +141,7 @@ header h1, header p, header a {
   position: relative; 
   z-index: 1;        
 }
+
 
 
 
