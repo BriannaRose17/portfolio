@@ -12,13 +12,12 @@ function getFromLocal(key) {
 
 /* --- 3. TIMER LOGIC --- */
 function startTimer() {
-    console.log("Start button clicked"); // Check your Console (F12) for this!
+    console.log("Start button clicked"); 
     if (isRunning) return; 
 
     const userValue = document.getElementById('userMinutes').value;
     const startingMinutes = userValue ? parseInt(userValue) : 25;
 
-    // Set time if fresh start or reset
     if (!timeLeft || timeLeft === startingMinutes * 60) {
         timeLeft = startingMinutes * 60;
         window.totalSeconds = timeLeft;
@@ -128,16 +127,16 @@ function renderLogs() {
 }
 function clearLogs() {
     if (confirm("Delete all session history? This cannot be undone.")) {
-        // 1. Wipe the browser's memory
+    
         localStorage.removeItem('focusLogs');
         
-        // 2. Clear the live data in your script
+       
         focusLogs = []; 
         
-        // 3. Immediately update the UI
+        
         renderLogs(); 
         
-        // 4. Update the total minutes display to 0
+     
         const totalDisplay = document.getElementById('totalCount');
         if (totalDisplay) {
             totalDisplay.innerText = "Total Focused: 0 mins";
@@ -213,7 +212,7 @@ function renderWellnessTasks() {
 }
 
 function deleteWellnessTask(id) {
-    // Filter out the selected task by ID
+  
     wellnessTasks = wellnessTasks.filter(t => t.id !== id);
     saveToLocal('wellnessTasks', wellnessTasks);
     renderWellnessTasks();
@@ -252,7 +251,7 @@ window.onload = function() {
     renderHabits();
     updateWaterUI();
 };
-// Add these functions to your Focusapp.js
+
 
 function addWater() {
     let waterCount = parseInt(localStorage.getItem('waterCount')) || 0;
@@ -273,7 +272,6 @@ function removeWater() {
 function updateWaterUI() {
     let waterCount = parseInt(localStorage.getItem('waterCount')) || 0;
     
-    // Bar fills up at 8, but stays at 100% if you go over
     const percentage = Math.min((waterCount / 8) * 100, 100);
     const bar = document.getElementById('waterBar');
     const display = document.getElementById('waterCount');
@@ -283,25 +281,24 @@ function updateWaterUI() {
     if (display) {
         if (waterCount >= 8) {
             display.innerHTML = `<strong>${waterCount}</strong> / 8 glasses <br> <span style="color: #5bc0a7; font-size: 0.8em;">Goal Reached! ✨</span>`;
-            bar.style.background = "#5bc0a7"; // Brighter green-blue when finished
+            bar.style.background = "#5bc0a7"; 
         } else {
             display.innerText = `${waterCount} / 8 glasses`;
-            bar.style.background = "#8bb7d6"; // Standard blue
+            bar.style.background = "#8bb7d6"; 
         }
     }
 }
 function resetWater() {
     if (confirm("Reset your daily hydration?")) {
-        // 1. Clear the browser's "hard drive"
+        
         localStorage.removeItem('waterCount');
 
-        // 2. Clear the code's "active memory" (The missing step!)
-        // This ensures the next time you click 'Add', it starts at 1, not 9.
+        
         if (typeof waterGlasses !== 'undefined') {
             waterGlasses = 0;
         }
 
-        // 3. Force the screen to show 0
+    
         updateWaterUI();
     }
 }
@@ -329,7 +326,7 @@ function renderHabits() {
 }
 
 function toggleHabit(id) {
-    // Find the habit and flip its status
+
     habitData = habitData.map(h => h.id === id ? {...h, done: !h.done} : h);
     saveToLocal('habitData', habitData);
     renderHabits();
@@ -342,29 +339,28 @@ function deleteHabit(id) {
         renderHabits();
     }
 }
-/* --- Mood Tracker Logic --- */
+
 
 function logMood(emoji) {
-    console.log("Mood logged:", emoji); // Check your console (F12) for this!
+    console.log("Mood logged:", emoji); 
 
-    // 1. Create the entry
+
     const moodEntry = {
         emoji: emoji,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         date: new Date().toLocaleDateString()
     };
 
-    // 2. Save it to LocalStorage
+
     let moods = JSON.parse(localStorage.getItem('moodHistory')) || [];
-    moods.unshift(moodEntry); // Add new mood to the top
+    moods.unshift(moodEntry);
     localStorage.setItem('moodHistory', JSON.stringify(moods));
 
-    // 3. Update the UI text
+   
     const display = document.getElementById('currentMood');
     if (display) {
         display.innerHTML = `Latest Mood: <span style="font-size: 24px;">${emoji}</span>`;
     }
 
-    // 4. Optional: Highlight the selected button
-    // (We can add CSS for this next)
 }
+
