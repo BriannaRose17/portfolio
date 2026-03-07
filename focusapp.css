@@ -1,4 +1,4 @@
-/* --- 1. GLOBAL STYLES --- */
+
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +17,7 @@ Body {
   padding: 20px;
 }
 
-/* --- 2. HEADER & TITLE --- */
+
 header {
   text-align: center;
   margin-bottom: 40px;
@@ -39,7 +39,7 @@ header {
   font-style: italic;
 }
 
-/* --- 3. DASHBOARD & GRID --- */
+
 .main-dashboard {
   width: 95%;
   max-width: 700px;
@@ -87,7 +87,6 @@ header {
   border-color: #8EB69B;
 }
 
-/* --- 4. AFFIRMATIONS --- */
 .affirmation-container {
     background-color: #d1fff7;
     padding: 15px;
@@ -98,7 +97,7 @@ header {
     width: 100%;
 }
 
-/* --- 5. MODAL OVERLAY & POP-OUT BOXES --- */
+
 .modal-overlay {
     display: none;
     position: fixed;
@@ -117,8 +116,8 @@ header {
     background: white;
     width: 95%;
     max-width: 500px;
-    max-height: 85vh;    /* FIX: Prevents box from going off screen */
-    overflow-y: auto;    /* FIX: Adds scrollbar for long task lists */
+    max-height: 85vh;    
+    overflow-y: auto;    
     border-radius: 25px;
     padding: 30px;
     border: 3px solid #e7fcf0;
@@ -161,7 +160,6 @@ header {
     font-size: 20px;
 }
 
-/* --- 6. LISTS & ITEMS --- */
 .task-item {
     display: flex;
     justify-content: space-between;
@@ -179,7 +177,7 @@ header {
     opacity: 0.5;
 }
 
-/* --- 7. BUTTONS & CONTROLS --- */
+
 .complete-btn {
     background-color: #8EB69B;
     color: white;
@@ -200,7 +198,7 @@ header {
     cursor: pointer;
 }
 
-/* --- 8. MOBILE RESPONSIVE --- */
+
 @media (max-width: 480px) {
     .tab-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -218,7 +216,7 @@ header {
 
     .tab-content {
         padding: 20px;
-        max-height: 90vh; /* More room on small screens */
+        max-height: 90vh; 
     }
 }
 
@@ -232,28 +230,29 @@ header {
     top: 20px;
     left: 20px;
     text-decoration: none;
-    color: #5bc085;         /* Rose color */
+    color: #5bc085;      
     font-weight: bold;
     padding: 8px 15px;
     border: 2px solid #c1f2da;
     border-radius: 8px;
     background-color: transparent;
     transition: all 0.3s ease;
-    z-index: 50;            /* Keeps it above the corner roses */
+    z-index: 50;           
 }
 
 .back-btn:hover {
     background-color: #c3f2c1;
     color: white;
-    transform: translateX(-5px); /* Subtle nudge to the left */
+    transform: translateX(-5px);
 }
 
-/* Ensure header has enough space for the button on mobile */
+
 @media (max-width: 480px) {
     .back-btn {
-        position: static;   /* Moves it above the title on small screens */
+        position: static;   
         margin-bottom: 20px;
     }
 }
+
 
 
