@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="focusapp.css">
-      <!-- Use a real link to your portfolio page -->
+   
     <a href="Project.html" class="back-btn">← Back to Projects</a>
     
     <h1 class="app-title">Wellness Haven</h1>
@@ -15,7 +15,7 @@
 <body>
 
     <main class="main-dashboard">
-        <!-- 1. NAVIGATION GRID -->
+
         <nav class="tab-grid">
             <button class="square-btn" onclick="openTab(event, 'timer')">Focus Timer</button>
             <button class="square-btn" onclick="openTab(event, 'logs')">Session Logs</button>
@@ -25,15 +25,13 @@
             <button class="square-btn" onclick="openTab(event, 'hydration')">Hydration</button>
         </nav>
 
-        <!-- 2. DAILY AFFIRMATION -->
+
         <div class="affirmation-container">
             <p id="affirmationText">"Loading your daily inspiration..."</p>
         </div>
 
-        <!-- 3. MODAL OVERLAY -->
         <div id="modalOverlay" class="modal-overlay">
-            
-            <!-- FOCUS TIMER -->
+
             <section id="timer" class="tab-content">
                 <div class="modal-header">
                     <h2>Focus Timer</h2>
@@ -51,7 +49,7 @@
                 </div>
             </section>
 
-            <!-- SESSION HISTORY -->
+
             <section id="logs" class="tab-content">
                 <div class="modal-header">
                     <h2>Session History</h2>
@@ -64,7 +62,7 @@
                 </div>
             </section>
 
-            <!-- WELLNESS TASKS (Fixed Duplicates) -->
+     
             <section id="tasks" class="tab-content">
                 <div class="modal-header">
                     <h2>Daily Tasks</h2>
@@ -80,7 +78,7 @@
                 </div>
             </section>
 
-            <!-- MOOD TRACKER -->
+    
             <section id="mood" class="tab-content">
                 <div class="modal-header">
                     <h2>How are you feeling?</h2>
@@ -96,7 +94,7 @@
                 </div>
             </section>
 
-            <!-- HABIT TRACKER (Fixed Duplicates) -->
+     
             <section id="habit" class="tab-content">
                 <div class="modal-header">
                     <h2>Habit Tracker</h2>
@@ -110,14 +108,14 @@
                     <ul id="habitList" class="hierarchy-list"></ul>
                 </div>
             </section>
-<!-- HYDRATION SECTION -->
+
 <section id="hydration" class="tab-content">
     <div class="modal-header">
         <h2>Hydration</h2>
         <button class="close-x" onclick="closeModal()">✕</button>
     </div>
     
-    <!-- Only keep this ONE modal-body -->
+
     <div class="modal-body">
         <p id="waterCount">0 / 8 glasses</p>
         <div class="progress-container">
@@ -141,6 +139,7 @@
 </body>
 
 </html>
+
 
 
 
