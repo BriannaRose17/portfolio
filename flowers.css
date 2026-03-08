@@ -195,11 +195,16 @@ input[type=range], input[type=color], select {
     transition: all 0.3s ease;
     z-index: 50;           
 }
-
+.back-btn:hover {
+    background-color: #c3f2c1;
+    color: white;
+    transform: translateX(-5px);
+}
 
 @media print { 
     .sidebar, h1, p { display: none; } 
     .canvas { border: none; box-shadow: none; width: 100vw; height: 100vh; } 
 }
+
 
 
