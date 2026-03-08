@@ -179,9 +179,27 @@ input[type=range], input[type=color], select {
     background: rgba(142, 182, 155, 0.05);
 }
 
+}
+.back-btn {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #5bc085;      
+    font-weight: bold;
+    padding: 8px 15px;
+    border: 2px solid #c1f2da;
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.3s ease;
+    z-index: 50;           
+}
+
 
 @media print { 
     .sidebar, h1, p { display: none; } 
     .canvas { border: none; box-shadow: none; width: 100vw; height: 100vh; } 
 }
+
 
