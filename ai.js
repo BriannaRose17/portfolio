@@ -82,6 +82,7 @@
         "The King of Hearts is the only king in a deck of cards without a mustache. 🤴",
         "Blueberries don't actually turn blue until they are picked and sit for a while. 🫐",
     ];
+
 window.onload = () => {
     typeWriter("Greetings! I am the Cosmic Brain. Ask me anything to receive a fragment of universal truth! ✨", 'bot-msg');
 };
@@ -95,8 +96,6 @@ function queryAI() {
     const userText = promptInput.value;
     addMessageToChat(userText, 'user-msg'); 
 
-  
-
     const randomResponse = responses[Math.floor(Math.random() * responses.length)];
 
     promptInput.value = "";
@@ -108,6 +107,14 @@ function queryAI() {
     }, 600); 
 }
 
+function getRandomFact() {
+    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+    addMessageToChat("Surprise me with a fact! 🎲", 'user-msg');
+
+    setTimeout(() => {
+        typeWriter(randomResponse, 'bot-msg');
+    }, 600);
+}
 
 function addMessageToChat(text, className) {
     const responseArea = document.getElementById('aiResponseArea');
@@ -117,17 +124,6 @@ function addMessageToChat(text, className) {
     responseArea.appendChild(messageDiv);
     responseArea.scrollTop = responseArea.scrollHeight;
 }
-function getRandomFact() {
-
-    const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-
-    addMessageToChat("Surprise me with a fact! 🎲", 'user-msg');
-
-    setTimeout(() => {
-        typeWriter(randomResponse, 'bot-msg');
-    }, 600);
-}
-
 
 function typeWriter(text, className) {
     const responseArea = document.getElementById('aiResponseArea');
@@ -148,6 +144,7 @@ function typeWriter(text, className) {
     }
     type();
 }
+
 
 
 
