@@ -51,7 +51,7 @@
         "You can't hum while holding your nose. (Go ahead, try it!) 👃",
         "Bananas are technically berries, but strawberries are not. 🍌",
         "The moon has moonquakes. 🌑",
-        "An ostrich's eye is bigger than its brain. 👁️"
+        "An ostrich's eye is bigger than its brain. 👁️",
         "A group of owls is called a 'parliament.' 🦉",
         "Pigs can’t look up into the sky; it’s physically impossible for them. 🐷",
         "The world's smallest vibrating engine is inside a honeybee's wing. 🐝",
@@ -143,6 +143,7 @@ function typeWriter(text, className) {
     }
     type();
 }
+
 
 
 
