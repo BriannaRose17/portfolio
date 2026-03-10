@@ -1,17 +1,4 @@
-window.onload = () => {
-    typeWriter("Greetings! I am the Cosmic Brain. Ask me anything to receive a fragment of universal truth! ✨", 'bot-msg');
-};
-
-function queryAI() {
-    const promptInput = document.getElementById('aiPrompt');
-    const btn = document.getElementById('askBtn');
-
-    if (!promptInput || !promptInput.value.trim()) return;
-
-    const userText = promptInput.value;
-    addMessageToChat(userText, 'user-msg'); 
-
-    const responses = [
+  const responses = [
         "Octopuses have three hearts and blue blood. 🐙",
         "A group of flamingos is called a 'flamboyance.' 🦩",
         "Shrimp have their hearts located in their heads. 🦐",
@@ -95,6 +82,20 @@ function queryAI() {
         "The King of Hearts is the only king in a deck of cards without a mustache. 🤴",
         "Blueberries don't actually turn blue until they are picked and sit for a while. 🫐",
     ];
+window.onload = () => {
+    typeWriter("Greetings! I am the Cosmic Brain. Ask me anything to receive a fragment of universal truth! ✨", 'bot-msg');
+};
+
+function queryAI() {
+    const promptInput = document.getElementById('aiPrompt');
+    const btn = document.getElementById('askBtn');
+
+    if (!promptInput || !promptInput.value.trim()) return;
+
+    const userText = promptInput.value;
+    addMessageToChat(userText, 'user-msg'); 
+
+  
 
     const randomResponse = responses[Math.floor(Math.random() * responses.length)];
 
@@ -147,6 +148,7 @@ function typeWriter(text, className) {
     }
     type();
 }
+
 
 
 
