@@ -47,6 +47,24 @@ textarea {
     background: #7aa188;
 }
 
+#randomBtn {
+    background: transparent;
+    color: #8EB69B;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #8EB69B; 
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px; 
+    transition: all 0.3s ease;
+}
+
+#randomBtn:hover {
+    background: #E8F3ED;
+    color: #2D3A30;
+}
+
 
 .msg {
     max-width: 80%;
@@ -89,6 +107,7 @@ textarea {
   transition: 0.3s;
   margin-bottom: 10px;
 }
+
 
 
 
